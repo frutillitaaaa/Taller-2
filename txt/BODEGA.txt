@@ -1,0 +1,30 @@
+Medicamentos, Analgésicos, 101, Paracetamol 500mg, 3.50
+Medicamentos, Analgésicos, 102, Ibuprofeno 400mg, 4.00
+Medicamentos, Analgésicos, 103, Naproxeno 250mg, 5.00
+Medicamentos, Antibióticos, 104, Amoxicilina 500mg, 8.00
+Medicamentos, Antibióticos, 105, Azitromicina 500mg, 12.00
+Medicamentos, Antibióticos, 106, Ciprofloxacina 500mg, 10.00
+Cuidado Personal, Higiene, 201, Pasta Dental, 2.50
+Cuidado Personal, Higiene, 202, Jabón Antibacterial, 1.75
+Cuidado Personal, Higiene, 203, Desodorante Roll-On, 3.00
+Cuidado Personal, Cosméticos, 204, Crema Hidratante, 6.00
+Cuidado Personal, Cosméticos, 205, Base de Maquillaje, 12.00
+Cuidado Personal, Cosméticos, 206, Labial, 5.00
+Suplementos, Vitaminas, 301, Vitamina C 500mg, 4.50
+Suplementos, Vitaminas, 302, Multivitamínico, 7.00
+Suplementos, Vitaminas, 303, Vitamina D 1000IU, 5.00
+Suplementos, Proteínas, 304, Proteína de Suero 1kg, 25.00
+Suplementos, Proteínas, 305, Proteína Vegetal 500g, 20.00
+Suplementos, Proteínas, 306, Batido de Proteínas, 3.50
+Equipos Médicos, Diagnóstico, 401, Termómetro Digital, 15.00
+Equipos Médicos, Diagnóstico, 402, Esfigmomanómetro, 25.00
+Equipos Médicos, Diagnóstico, 403, Oxímetro de Pulso, 30.00
+Equipos Médicos, Terapéutico, 404, Nebulizador, 50.00
+Equipos Médicos, Terapéutico, 405, Muletas, 35.00
+Equipos Médicos, Terapéutico, 406, Férula de Muñeca, 10.00
+Productos Naturales, Herbales, 501, Té de Manzanilla, 3.00
+Productos Naturales, Herbales, 502, Extracto de Valeriana, 6.00
+Productos Naturales, Herbales, 503, Aceite de Coco, 8.00
+Productos Naturales, Homeopatía, 504, Arnica Montana 30CH, 5.00
+Productos Naturales, Homeopatía, 505, Nux Vomica 30CH, 5.00
+Productos Naturales, Homeopatía, 506, Calcárea Carbónica 30CH, 5.00
