@@ -9,6 +9,7 @@ class HashMap {
 
     private:
         static const int hashGroups = 5;
+        Lista listaProductos[hashGroups];
         
     public:
         bool isEmpty() const;
