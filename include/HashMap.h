@@ -10,8 +10,6 @@ class HashMap {
     private:
         static const int hashGroups = 5;
         
-    
-
     public:
         bool isEmpty() const;
         int hashFunction(int clave);

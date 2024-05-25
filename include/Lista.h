@@ -6,12 +6,14 @@ using namespace std;
 
 class Lista {
 
-    Node* first = nullptr;
+    private:
+        Node* first = nullptr;
 
-
-    Lista();
-    ~Lista();
-    void agregarAlFinal();
-    void eliminarNodo();
+    public:
+        Lista();
+        ~Lista();
+        bool isEmpty();
+        void agregarAlPrincipio(Node* nodo, Producto* producto);
+        void eliminarNodo(Node* nodo, Producto* producto);
 
 };

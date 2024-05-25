@@ -4,9 +4,13 @@
 
 using namespace std;
 
-struct Node {
+class Node {
 
-    Producto* producto;
-    Node* next;
+    public:
+        Producto* producto;
+        Node* next;
+        Node* anterior;
+        Node(Producto* producto);
+
 
 };
