@@ -206,26 +206,28 @@ void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
 void leerArchivoBodega(HashMap& hashMap){
     fstream archivo("BODEGA.txt");
     string linea;
-    vector<string> partes;
-    istringstream ss(linea);
-    string parte;
+    
 
     if(archivo.is_open()){
         while(getline(archivo,linea)){
-            getline(ss, parte, ',');
-            partes.push_back(parte);
-
-            string categoria = partes[0];
+            vector<string> partes;
+            istringstream ss(linea);
+            string parte;
+            while(getline(ss, parte, ',')){
+                partes.push_back(parte);
+            }
+            
+            if(partes.size() == 5){
+                string categoria = partes[0];
             string subcategoria = partes[1];
             string idProducto = partes[2];
             string nombreProducto = partes[3];
             int precio = stoi(partes[4]);
-
-            Producto* producto = new Producto(idProducto,nombreProducto,precio,categoria,subcategoria);
-            hashMap.insertarItem(categoria, producto);
-            hashMap.desplegarMap();
-
-            delete producto;
+            Producto producto(idProducto,nombreProducto,precio,categoria,subcategoria);
+            //hashMap.insertarItem(categoria, producto);
+            } 
+            
+            //hashMap.desplegarMap();
 
         }
         archivo.close();
