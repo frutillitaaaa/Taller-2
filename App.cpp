@@ -224,10 +224,10 @@ void leerArchivoBodega(HashMap& hashMap){
             string nombreProducto = partes[3];
             int precio = stoi(partes[4]);
             Producto producto(idProducto,nombreProducto,precio,categoria,subcategoria);
-            hashMap.insertarItem(categoria, &producto);
+            //hashMap.insertarItem(categoria, &producto);
             } 
             
-            hashMap.desplegarMap();
+            //hashMap.desplegarMap();
 
         }
         archivo.close();
