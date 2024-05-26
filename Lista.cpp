@@ -1,12 +1,19 @@
-#include "include\Lista.h"
+#include "Lista.h"
 
 Lista::Lista()
 {
-    Node* first = nullptr;
+    first = nullptr;
 }
 
 Lista::~Lista()
 {
+    Node* nodoActual = first;
+    while(nodoActual != nullptr){
+        Node* siguiente = nodoActual->next;
+        delete nodoActual;
+        nodoActual = siguiente;
+    }
+    first = nullptr;
 }
 
 bool Lista::isEmpty()
@@ -25,6 +32,7 @@ void Lista::agregarAlPrincipio(Producto* producto)
     } 
     first = nuevoNodo;
 
+    delete nuevoNodo;
 
 }
 
@@ -34,6 +42,7 @@ void Lista::eliminarNodo(Node* nodo)
         nodo->anterior->next = nodo->next;
         nodo->next->anterior = nodo->anterior;
 
+        delete nodo;
     } 
 }
 
@@ -57,6 +66,7 @@ bool Lista::buscarElemento(Producto* producto)
             }
         }
     }
+    
     return false;
 }
 
@@ -72,6 +82,7 @@ Node* Lista::obtenerNodo(Producto* producto)
             }
         }
     }
+    
     return nullptr;
 }
 
@@ -84,5 +95,6 @@ int Lista::size()
         nodoActual = nodoActual->next;
         contador++;
     }
+    
     return contador;
 }

@@ -1,4 +1,4 @@
-#include "include\Node.h"
+#include "Node.h"
 
 Node::Node(Producto* producto)
 {
@@ -9,3 +9,6 @@ Node::Node(Producto* producto)
     
 }
 
+Node::~Node()
+{
+}

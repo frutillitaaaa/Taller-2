@@ -1,4 +1,4 @@
-#include "include\HashMap.h"
+#include "HashMap.h"
 
 bool HashMap::isEmpty() const
 {
@@ -38,17 +38,21 @@ void HashMap::insertarItem(string clave, Producto* producto)
 
 void HashMap::eliminarItem(string clave, Producto* producto)
 {
+
+    Node* nodoActual = nullptr;
+
     int index = hashFunction(clave);
     if(buscarItem(clave,producto)){
         int claveCatProducto = hashFunction(producto->obtenerCategoria());
         for(int i = 0; i < hashGroups; i++){
             if(claveCatProducto == index){
-                Node* nodoActual = listaProductos[index]->obtenerNodo(producto);
+                nodoActual = listaProductos[index]->obtenerNodo(producto);
                 listaProductos[index]->eliminarNodo(nodoActual);
-                delete nodoActual;
+                
             }
         }
     }
+    if(nodoActual != nullptr) delete nodoActual;
 
 }
 
@@ -68,13 +72,24 @@ bool HashMap::buscarItem(string clave, Producto* producto)
 
 void HashMap::desplegarMap()
 {
-    
+    Node* nodoActual = nullptr;
+
     for(int i = 0; i < hashGroups; i++){
         for(int j = 0; j < listaProductos[i]->size(); j++){
-            Node* nodoActual = listaProductos[i]->obtenerPrimerNodo();
+            nodoActual = listaProductos[i]->obtenerPrimerNodo();
             cout<<"Producto: "<< nodoActual->producto->obtenerNombreProducto();
             nodoActual = nodoActual->next;
+
+            
         } 
     }
     
+}
+
+HashMap::~HashMap()
+{
+    for(int i = 0; i < hashGroups; i ++){
+        delete listaProductos[i];
+    }
+    delete[] listaProductos;
 }

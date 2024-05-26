@@ -1,10 +1,10 @@
 
-#include "include\Cliente.h"
-#include "include\ClienteNormal.h"
-#include "include\ClientePreferencial.h"
-#include "include\ColasClientes.h"
-#include "include\Producto.h"
-#include "include\HashMap.h"
+#include "Cliente.h"
+#include "ClienteNormal.h"
+#include "ClientePreferencial.h"
+#include "ColasClientes.h"
+#include "Producto.h"
+#include "HashMap.h"
 
 
 #include <iostream>
@@ -82,6 +82,7 @@ void ingresarClienteACola(ColasClientes& cola){
         }
         
     } while(opcion != 1 && opcion != 2);
+    
 }
 
 void desplegarProductosEnBodega(){
@@ -124,10 +125,7 @@ void agregarProductosABodega(HashMap& hashMap){
     cin>>valor;
     producto->setPrecio(valor);
 
-    
-
-
-
+    delete producto;
 
 }
 
@@ -227,11 +225,15 @@ void leerArchivoBodega(HashMap& hashMap){
             hashMap.insertarItem(categoria, producto);
             hashMap.desplegarMap();
 
+            delete producto;
+
         }
         archivo.close();
     } else {
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
     }
+
+    
 }
 
 

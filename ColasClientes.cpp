@@ -1,4 +1,4 @@
-#include "include\ColasClientes.h"
+#include "ColasClientes.h"
 
 ColasClientes::ColasClientes(){
     
@@ -7,8 +7,6 @@ ColasClientes::ColasClientes(){
 ColasClientes::~ColasClientes(){
 
 }
-
-
 
 queue<ClienteNormal> ColasClientes::obtenerColaClientesNormales()
 {
@@ -85,5 +83,5 @@ void ColasClientes::agregarClienteAColaPreferencial(ClientePreferencial *cliente
     cout<<colaClientesPreferenciales.front().getAtributo();
     cout<<colaClientesPreferenciales.front().getPrioridad();
 
-    
+    delete c;
 }

@@ -19,5 +19,7 @@ class HashMap {
         void eliminarItem(string clave, Producto* producto);
         bool buscarItem(string clave, Producto* producto);
         void desplegarMap();
+        ~HashMap();
+
 
 };
