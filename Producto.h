@@ -10,13 +10,13 @@ class Producto {
     private:
         string idProducto;
         string nombreProducto;
-        int precio;
+        double precio;
         string categoria;
         string subcategoria;
 
     public:
         Producto();
-        Producto(string idProducto, string nombreProducto, int precio, string categoria, string subcategoria);
+        Producto(string categoria, string subcategoria, string idProducto, string nombreProducto, double precio);
         ~Producto();
         void setIdProducto(string idProducto);
         void setNombreProducto(string nombreProducto);

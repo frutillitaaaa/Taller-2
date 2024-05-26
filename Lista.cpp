@@ -2,7 +2,7 @@
 
 Lista::Lista()
 {
-    Node* first = nullptr;
+    first = nullptr;
 }
 
 Lista::~Lista()
@@ -34,19 +34,17 @@ bool Lista::isEmpty() const
 
 void Lista::agregarAlPrincipio(Producto* producto)
 {
-    Node* nuevoNodo = new Node(producto);
     
-    if(!isEmpty()){
+    Node* nuevoNodo = new Node(producto);
+    if(first == nullptr){
+        cout<<"hola";
+        first = nuevoNodo;
+    } else {
+        cout<<"chao";
         nuevoNodo->next = first;
         first->anterior = nuevoNodo;
-        cout<<"hasta aqui2"<<endl;
-    } else{
-        nuevoNodo->next = nullptr;
-        nuevoNodo->anterior = nullptr;
-        cout<<"hasta aqui"<<endl;
+        first = nuevoNodo;
     }
-    first = nuevoNodo;
-    
     
 
 }

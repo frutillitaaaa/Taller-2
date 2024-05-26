@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #include "Node.h"
@@ -7,7 +9,7 @@ using namespace std;
 class Lista {
 
     private:
-        Node* first = nullptr;
+        Node* first;
 
     public:
         Lista();

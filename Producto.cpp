@@ -3,7 +3,7 @@
 Producto::Producto(){
 
 }
-Producto::Producto(string idProducto, string nombreProducto, int precio, string categoria, string subcategoria)
+Producto::Producto(string categoria, string subcategoria, string idProducto, string nombreProducto, double precio)
 {
     this->idProducto = idProducto;
     this->nombreProducto = nombreProducto;

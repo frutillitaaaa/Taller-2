@@ -5,6 +5,7 @@
 #include "ColasClientes.h"
 #include "Producto.h"
 #include "HashMap.h"
+#include "Lista.h"
 
 
 #include <iostream>
@@ -222,8 +223,8 @@ void leerArchivoBodega(HashMap& hashMap){
             string subcategoria = partes[1];
             string idProducto = partes[2];
             string nombreProducto = partes[3];
-            int precio = stoi(partes[4]);
-            Producto producto(idProducto,nombreProducto,precio,categoria,subcategoria);
+            double precio = stod(partes[4]);
+            Producto producto(categoria,subcategoria,idProducto,nombreProducto,precio);
             hashMap.insertarItem(categoria, &producto);
             } 
             
@@ -244,8 +245,13 @@ int main(int argc, char const *argv[])
 {
     HashMap hashMap;
     ColasClientes cola;
-    leerArchivoBodega(hashMap);
+    Lista lista;
+    //leerArchivoBodega(hashMap);
     //menuPrincipal(cola, hashMap);
+    Producto* p = new Producto("Medicamentos", "Analgésicos", "101", "Paracetamol 500mg", 3.50);
+    lista.agregarAlPrincipio(p);
+    p = new Producto("Medicamentos", "Analgésicos", "102", "Ibuprofeno 400mg", 4.00);
+    lista.agregarAlPrincipio(p);
     system("pause");
     return 0;
 }
