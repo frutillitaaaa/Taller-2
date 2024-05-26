@@ -29,10 +29,14 @@ void HashMap::insertarItem(string clave, Producto* producto)
     int claveCatProducto = hashFunction(producto->obtenerCategoria());
     
     for(int i = 0; i < hashGroups; i++){
-        if(claveCatProducto == index){
-            listaProductos[index]->agregarAlPrincipio(producto);
+       if(claveCatProducto == index){
+           listaProductos[index]->agregarAlPrincipio(producto);
+            
         }
+       
     }
+    
+    
 
 }
 

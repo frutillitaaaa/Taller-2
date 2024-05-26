@@ -224,7 +224,7 @@ void leerArchivoBodega(HashMap& hashMap){
             string nombreProducto = partes[3];
             int precio = stoi(partes[4]);
             Producto producto(idProducto,nombreProducto,precio,categoria,subcategoria);
-            //hashMap.insertarItem(categoria, &producto);
+            hashMap.insertarItem(categoria, &producto);
             } 
             
             //hashMap.desplegarMap();
@@ -244,12 +244,8 @@ int main(int argc, char const *argv[])
 {
     HashMap hashMap;
     ColasClientes cola;
-    cout<<"Hola1"<<endl;
     leerArchivoBodega(hashMap);
-    cout<<"Hola"<<endl;
     //menuPrincipal(cola, hashMap);
-
-
     system("pause");
     return 0;
 }
