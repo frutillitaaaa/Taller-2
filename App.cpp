@@ -2,9 +2,15 @@
 #include "ClienteNormal.h"
 #include "ClientePreferencial.h"
 #include "ColasClientes.h"
+#include "Producto.h"
+#include "HashMap.h"
 
 
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
+
 using namespace std;
 
 void desplegarMenu(){
@@ -13,7 +19,7 @@ void desplegarMenu(){
     cout<<"1. Entregar numero de atencion\n";
     cout<<"2. Llamar al siguiente cliente\n";
     cout<<"3. Ingresar cliente a la cola de manera correcta\n";
-    cout<<"4. Agregar productos a bodega\n";
+    cout<<"4. Menu Productos\n";
     cout<<"5. Generar boletas de venta\n";
     cout<<"0. Salir\n";
 
@@ -77,7 +83,29 @@ void ingresarClienteACola(ColasClientes& cola){
     } while(opcion != 1 && opcion != 2);
 }
 
-void agregarProductosABodega(){
+void menuProductos(HashMap& hashMap){
+    int opcion; 
+
+    do{
+        cout<<"Seleccione una opcion\n1) Mostrar productos en bodega\n2) Agregar un producto a bodega\n0) Salir"<<endl;
+        cin>>opcion;
+
+        switch(opcion){
+            case 1:
+                desplegarProductosEnBodega();
+                break;
+            case 2:
+                agregarProductosABodega(hashMap);
+                break;
+            case 0:
+                cout<<"Saliendo";
+                break;
+            default:
+                cout<<"Ingrese una opcion valida";
+                break;
+
+        }
+    } while(opcion != 0);
 
 }
 
@@ -85,8 +113,41 @@ void generarBoletaDeVenta(){
 
 }
 
+void agregarProductosABodega(HashMap& hashMap){
+    string texto;
+    int valor;
+    Producto* producto;
+    
+    cout<<"Ingrese el ID del producto: "<<endl;
+    cin>>texto;
+    producto->setIdProducto(texto);
 
-void menuPrincipal(ColasClientes& cola){
+
+    
+    cout<<"Ingrese el nombre del producto que desea agregar: "<<endl;
+    cin>>texto;
+    producto->setNombreProducto(texto);
+
+    cout<<"Ingrese la categoria del producto: "<<endl;
+    cin>>texto;
+    producto->setCategoria(texto);
+
+    cout<<"Ingrese la subcategoria del producto: "<<endl;
+    cin>>texto;
+    producto->setSubCategoria(texto);
+
+    cout<<"Ingrese el precio del producto: "<<endl;
+    cin>>valor;
+    producto->setPrecio(valor);
+
+    
+
+
+
+
+}
+
+void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
     int opcion;
 
     do {
@@ -110,7 +171,7 @@ void menuPrincipal(ColasClientes& cola){
                 break;
             case 4:
                 cout<<"Agregar productos a bodega";
-                agregarProductosABodega();
+                menuProductos(hashMap);
                 break;
             case 5:
                 cout<<"Generar boletas de venta";
@@ -129,12 +190,57 @@ void menuPrincipal(ColasClientes& cola){
 
 }
 
+void leerArchivoBodega(HashMap& hashMap){
+    fstream archivo("BODEGA.txt");
+    string linea;
+    vector<string> partes;
+    istringstream ss(linea);
+    string parte;
+
+    if(archivo.is_open()){
+        while(getline(archivo,linea)){
+            getline(ss, parte, ',');
+            partes.push_back(parte);
+
+            string categoria = partes[0];
+            string subcategoria = partes[1];
+            string idProducto = partes[2];
+            string nombreProducto = partes[3];
+            int precio = stoi(partes[4]);
+
+            Producto* producto = new Producto(idProducto,nombreProducto,precio,categoria,subcategoria);
+            hashMap.insertarItem(categoria, producto);
+            hashMap.desplegarMap();
+
+        }
+        archivo.close();
+    } else {
+        cerr<<"Error: No se pudo abrir el archivo"<<endl;
+    }
+}
+
+void desplegarProductosEnBodega(){
+    fstream archivo("BODEGA.txt");
+    string linea;
+
+    if(archivo.is_open()){
+        while(getline(archivo,linea)){
+            cout<<linea<<endl;
+        }
+        archivo.close();
+    } else {
+        cerr<<"Error: No se pudo abrir el archivo"<<endl;
+    }
+}
 
 int main(int argc, char const *argv[])
 {
+    HashMap hashMap;
     ColasClientes cola;
-    
-    menuPrincipal(cola);
+
+    leerArchivoBodega(hashMap);
+    //menuPrincipal(cola, hashMap);
+
 
     system("pause");
     return 0;

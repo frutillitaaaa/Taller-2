@@ -18,6 +18,7 @@ class Lista {
         Node* obtenerPrimerNodo();
         bool buscarElemento(Producto* producto);
         Node* obtenerNodo(Producto* producto);
+        int size();
 
 
 };

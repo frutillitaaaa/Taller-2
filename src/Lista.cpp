@@ -74,3 +74,15 @@ Node* Lista::obtenerNodo(Producto* producto)
     }
     return nullptr;
 }
+
+int Lista::size()
+{
+    int contador = 0;
+    Node* nodoActual = first;
+
+    while(nodoActual->next != nullptr){
+        nodoActual = nodoActual->next;
+        contador++;
+    }
+    return contador;
+}

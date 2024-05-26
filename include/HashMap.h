@@ -12,7 +12,7 @@ class HashMap {
         Lista* listaProductos[hashGroups];
         
     public:
-    int conversor(string clave);
+        int conversor(string clave);
         bool isEmpty() const;
         int hashFunction(string clave);
         void insertarItem(string clave, Producto* producto);

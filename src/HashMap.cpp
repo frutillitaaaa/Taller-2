@@ -46,8 +46,8 @@ void HashMap::eliminarItem(string clave, Producto* producto)
                 Node* nodoActual = listaProductos[index]->obtenerNodo(producto);
                 listaProductos[index]->eliminarNodo(nodoActual);
                 delete nodoActual;
+            }
         }
-    }
     }
 
 }
@@ -68,4 +68,13 @@ bool HashMap::buscarItem(string clave, Producto* producto)
 
 void HashMap::desplegarMap()
 {
+    
+    for(int i = 0; i < hashGroups; i++){
+        for(int j = 0; j < listaProductos[i]->size(); j++){
+            Node* nodoActual = listaProductos[i]->obtenerPrimerNodo();
+            cout<<"Producto: "<< nodoActual->producto->obtenerNombreProducto();
+            nodoActual = nodoActual->next;
+        } 
+    }
+    
 }

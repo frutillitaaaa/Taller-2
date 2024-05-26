@@ -13,6 +13,7 @@ class Producto {
         string subcategoria;
 
     public:
+        Producto();
         Producto(string idProducto, string nombreProducto, int precio, string categoria, string subcategoria);
         ~Producto();
         void setIdProducto(string idProducto);
