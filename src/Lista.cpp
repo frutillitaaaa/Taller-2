@@ -15,7 +15,7 @@ bool Lista::isEmpty()
     return false;
 }
 
-void Lista::agregarAlPrincipio(Node* nodo, Producto* producto)
+void Lista::agregarAlPrincipio(Producto* producto)
 {
    
     Node* nuevoNodo = new Node(producto);
@@ -25,14 +25,52 @@ void Lista::agregarAlPrincipio(Node* nodo, Producto* producto)
     } 
     first = nuevoNodo;
 
+
 }
 
-void Lista::eliminarNodo(Node* nodo, Producto* producto)
+void Lista::eliminarNodo(Node* nodo)
 {
     if(!isEmpty()){
         nodo->anterior->next = nodo->next;
         nodo->next->anterior = nodo->anterior;
 
-        delete nodo;
     } 
+}
+
+Node *Lista::obtenerPrimerNodo()
+{
+    if(!isEmpty()){
+        return first;
+    }
+    return nullptr;
+}
+
+bool Lista::buscarElemento(Producto* producto)
+{
+    Node* nodoActual = first;
+    if(!isEmpty()){
+        while(nodoActual->next != nullptr){
+            if(nodoActual->producto != producto){
+                nodoActual = nodoActual->next;
+            } else{
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+Node* Lista::obtenerNodo(Producto* producto)
+{
+    Node* nodoActual = first;
+    if(!isEmpty()){
+        while(nodoActual->next != nullptr){
+            if(nodoActual->producto != producto){
+                nodoActual = nodoActual->next;
+            } else{
+                return nodoActual;
+            }
+        }
+    }
+    return nullptr;
 }

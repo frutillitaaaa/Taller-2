@@ -11,6 +11,5 @@ class Node {
         Node* next;
         Node* anterior;
         Node(Producto* producto);
-
-
+        
 };

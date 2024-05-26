@@ -13,7 +13,11 @@ class Lista {
         Lista();
         ~Lista();
         bool isEmpty();
-        void agregarAlPrincipio(Node* nodo, Producto* producto);
-        void eliminarNodo(Node* nodo, Producto* producto);
+        void agregarAlPrincipio(Producto* producto);
+        void eliminarNodo(Node* nodo);
+        Node* obtenerPrimerNodo();
+        bool buscarElemento(Producto* producto);
+        Node* obtenerNodo(Producto* producto);
+
 
 };

@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(Producto *producto)
+Node::Node(Producto* producto)
 {
     this->producto = producto;
     this->next = nullptr;
@@ -8,3 +8,4 @@ Node::Node(Producto *producto)
 
     
 }
+
