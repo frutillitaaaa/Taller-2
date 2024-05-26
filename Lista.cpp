@@ -16,9 +16,17 @@ Lista::~Lista()
     first = nullptr;
 }
 
-bool Lista::isEmpty()
+bool Lista::isEmpty() const
 {
-    if(first == nullptr) return true;
+    cout<<"h";
+    
+    if(first == nullptr){
+        cout<<"ta vacio";
+        return true;
+    } else{
+        cout<<"tiene datos";
+
+    }
     return false;
     
     

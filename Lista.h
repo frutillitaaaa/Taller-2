@@ -12,7 +12,7 @@ class Lista {
     public:
         Lista();
         ~Lista();
-        bool isEmpty();
+        bool isEmpty() const;
         void agregarAlPrincipio(Producto* producto);
         void eliminarNodo(Node* nodo);
         Node* obtenerPrimerNodo();
