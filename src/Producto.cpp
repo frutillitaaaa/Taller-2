@@ -1,5 +1,8 @@
-#include "Producto.h"
+#include "include\Producto.h"
 
+Producto::Producto(){
+
+}
 Producto::Producto(string idProducto, string nombreProducto, int precio, string categoria, string subcategoria)
 {
     this->idProducto = idProducto;

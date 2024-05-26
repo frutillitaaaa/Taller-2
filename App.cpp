@@ -1,9 +1,10 @@
-#include "Cliente.h"
-#include "ClienteNormal.h"
-#include "ClientePreferencial.h"
-#include "ColasClientes.h"
-#include "Producto.h"
-#include "HashMap.h"
+
+#include "include\Cliente.h"
+#include "include\ClienteNormal.h"
+#include "include\ClientePreferencial.h"
+#include "include\ColasClientes.h"
+#include "include\Producto.h"
+#include "include\HashMap.h"
 
 
 #include <iostream>
@@ -83,36 +84,19 @@ void ingresarClienteACola(ColasClientes& cola){
     } while(opcion != 1 && opcion != 2);
 }
 
-void menuProductos(HashMap& hashMap){
-    int opcion; 
+void desplegarProductosEnBodega(){
+    fstream archivo("BODEGA.txt");
+    string linea;
 
-    do{
-        cout<<"Seleccione una opcion\n1) Mostrar productos en bodega\n2) Agregar un producto a bodega\n0) Salir"<<endl;
-        cin>>opcion;
-
-        switch(opcion){
-            case 1:
-                desplegarProductosEnBodega();
-                break;
-            case 2:
-                agregarProductosABodega(hashMap);
-                break;
-            case 0:
-                cout<<"Saliendo";
-                break;
-            default:
-                cout<<"Ingrese una opcion valida";
-                break;
-
+    if(archivo.is_open()){
+        while(getline(archivo,linea)){
+            cout<<linea<<endl;
         }
-    } while(opcion != 0);
-
+        archivo.close();
+    } else {
+        cerr<<"Error: No se pudo abrir el archivo"<<endl;
+    }
 }
-
-void generarBoletaDeVenta(){
-
-}
-
 void agregarProductosABodega(HashMap& hashMap){
     string texto;
     int valor;
@@ -146,6 +130,37 @@ void agregarProductosABodega(HashMap& hashMap){
 
 
 }
+
+void menuProductos(HashMap& hashMap){
+    int opcion; 
+
+    do{
+        cout<<"Seleccione una opcion\n1) Mostrar productos en bodega\n2) Agregar un producto a bodega\n0) Salir"<<endl;
+        cin>>opcion;
+
+        switch(opcion){
+            case 1:
+                desplegarProductosEnBodega();
+                break;
+            case 2:
+                agregarProductosABodega(hashMap);
+                break;
+            case 0:
+                cout<<"Saliendo";
+                break;
+            default:
+                cout<<"Ingrese una opcion valida";
+                break;
+
+        }
+    } while(opcion != 0);
+
+}
+
+void generarBoletaDeVenta(){
+
+}
+
 
 void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
     int opcion;
@@ -219,19 +234,7 @@ void leerArchivoBodega(HashMap& hashMap){
     }
 }
 
-void desplegarProductosEnBodega(){
-    fstream archivo("BODEGA.txt");
-    string linea;
 
-    if(archivo.is_open()){
-        while(getline(archivo,linea)){
-            cout<<linea<<endl;
-        }
-        archivo.close();
-    } else {
-        cerr<<"Error: No se pudo abrir el archivo"<<endl;
-    }
-}
 
 int main(int argc, char const *argv[])
 {
