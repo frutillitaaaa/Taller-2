@@ -252,6 +252,9 @@ int main(int argc, char const *argv[])
     lista.agregarAlPrincipio(p);
     p = new Producto("Medicamentos", "Analgésicos", "102", "Ibuprofeno 400mg", 4.00);
     lista.agregarAlPrincipio(p);
+    lista.desplegarDatosGuardados();
+    cout<<lista.size();
+    delete p;
     system("pause");
     return 0;
 }

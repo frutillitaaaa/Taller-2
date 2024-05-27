@@ -21,6 +21,7 @@ class Lista {
         bool buscarElemento(Producto* producto);
         Node* obtenerNodo(Producto* producto);
         int size();
+        void desplegarDatosGuardados();
 
 
 };

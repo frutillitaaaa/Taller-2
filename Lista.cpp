@@ -37,10 +37,8 @@ void Lista::agregarAlPrincipio(Producto* producto)
     
     Node* nuevoNodo = new Node(producto);
     if(first == nullptr){
-        cout<<"hola";
         first = nuevoNodo;
     } else {
-        cout<<"chao";
         nuevoNodo->next = first;
         first->anterior = nuevoNodo;
         first = nuevoNodo;
@@ -104,10 +102,20 @@ int Lista::size()
     int contador = 0;
     Node* nodoActual = first;
 
-    while(nodoActual->next != nullptr){
+    while(nodoActual != nullptr){
         nodoActual = nodoActual->next;
         contador++;
     }
     
     return contador;
+}
+
+void Lista::desplegarDatosGuardados(){
+    Node* nodoActual = first;
+    
+    while(nodoActual != nullptr){
+        cout<<nodoActual->producto->obtenerNombreProducto()<<endl;
+
+        nodoActual = nodoActual->next;
+    }
 }
