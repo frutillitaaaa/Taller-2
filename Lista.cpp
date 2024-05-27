@@ -18,18 +18,9 @@ Lista::~Lista()
 
 bool Lista::isEmpty() const
 {
-    cout<<"h";
-    
-    if(first == nullptr){
-        cout<<"ta vacio";
-        return true;
-    } else{
-        cout<<"tiene datos";
+    if(first == nullptr) return true;
 
-    }
     return false;
-    
-    
 }
 
 void Lista::agregarAlPrincipio(Producto* producto)
@@ -43,8 +34,6 @@ void Lista::agregarAlPrincipio(Producto* producto)
         first->anterior = nuevoNodo;
         first = nuevoNodo;
     }
-    
-
 }
 
 void Lista::eliminarNodo(Node* nodo)
@@ -69,8 +58,8 @@ bool Lista::buscarElemento(Producto* producto)
 {
     Node* nodoActual = first;
     if(!isEmpty()){
-        while(nodoActual->next != nullptr){
-            if(nodoActual->producto != producto){
+        while(nodoActual != nullptr){
+            if(nodoActual->producto->obtenerIdProducto() != producto->obtenerIdProducto()){
                 nodoActual = nodoActual->next;
             } else{
                 return true;

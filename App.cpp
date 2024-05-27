@@ -208,6 +208,7 @@ void leerArchivoBodega(HashMap& hashMap){
     fstream archivo("BODEGA.txt");
     string linea;
     
+    Producto* producto;
 
     if(archivo.is_open()){
         while(getline(archivo,linea)){
@@ -220,17 +221,15 @@ void leerArchivoBodega(HashMap& hashMap){
             
             if(partes.size() == 5){
                 string categoria = partes[0];
-            string subcategoria = partes[1];
-            string idProducto = partes[2];
-            string nombreProducto = partes[3];
-            double precio = stod(partes[4]);
-            Producto producto(categoria,subcategoria,idProducto,nombreProducto,precio);
-            hashMap.insertarItem(categoria, &producto);
+                string subcategoria = partes[1];
+                string idProducto = partes[2];
+                string nombreProducto = partes[3];
+                double precio = stod(partes[4]);
+                producto = new Producto(categoria,subcategoria,idProducto,nombreProducto,precio);   
             } 
-            
-            //hashMap.desplegarMap();
-
+            hashMap.insertarItem(producto);
         }
+        delete producto;
         archivo.close();
     } else {
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
@@ -246,14 +245,16 @@ int main(int argc, char const *argv[])
     HashMap hashMap;
     ColasClientes cola;
     Lista lista;
-    //leerArchivoBodega(hashMap);
+    leerArchivoBodega(hashMap);
     //menuPrincipal(cola, hashMap);
     Producto* p = new Producto("Medicamentos", "Analgésicos", "101", "Paracetamol 500mg", 3.50);
-    lista.agregarAlPrincipio(p);
-    p = new Producto("Medicamentos", "Analgésicos", "102", "Ibuprofeno 400mg", 4.00);
-    lista.agregarAlPrincipio(p);
-    lista.desplegarDatosGuardados();
-    cout<<lista.size();
+    //p = new Producto("Medicamentos", "Analgésicos", "102", "Ibuprofeno 400mg", 4.00);
+    
+    //hashMap.insertarItem(p);
+    
+    //cout<<hashMap.hashFunction(p->obtenerNombreProducto());
+    hashMap.insertarItem(p);
+    hashMap.desplegarMap();
     delete p;
     system("pause");
     return 0;
