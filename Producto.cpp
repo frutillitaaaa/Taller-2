@@ -65,3 +65,7 @@ string Producto::obtenerSubCategoria()
 {
     return subcategoria;
 }
+
+string Producto::toString(){
+    return categoria+","+subcategoria+","+idProducto+","+nombreProducto+","+to_string(precio);
+}

@@ -9,7 +9,14 @@ HashMap::HashMap()
 
 bool HashMap::isEmpty() const
 {
-    
+    int contListasVacias;
+    for(int i = 0; i < hashGroups; i++){
+        if(listaProductos[i]->isEmpty()){
+            contListasVacias++;
+        }   
+    }
+
+    if(contListasVacias == hashGroups) return true;
     return false;
 }
 
@@ -76,10 +83,7 @@ void HashMap::desplegarMap()
         while(nodoActual != nullptr){
             cout<<"Producto: "<< nodoActual->producto->obtenerNombreProducto()<<endl;
             nodoActual = nodoActual->next;
-        }
-            
-            
-        
+        }    
     }
     
 }
@@ -92,3 +96,5 @@ HashMap::~HashMap()
     
     delete[] listaProductos;
 }
+
+

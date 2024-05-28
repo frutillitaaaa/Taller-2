@@ -28,6 +28,5 @@ class Producto {
         int obtenerPrecioProducto();
         string obtenerCategoria();
         string obtenerSubCategoria();
-
-
+        string toString();
 };

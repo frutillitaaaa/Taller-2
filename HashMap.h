@@ -21,6 +21,4 @@ class HashMap {
         bool buscarItem(Producto* producto);
         void desplegarMap();
         ~HashMap();
-
-
 };

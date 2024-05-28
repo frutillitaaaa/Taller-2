@@ -233,8 +233,27 @@ void leerArchivoBodega(HashMap& hashMap){
         archivo.close();
     } else {
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
-    }
+    } 
+}
 
+void editarArchivoBodega(HashMap& hashMap){
+    fstream archivo("BODEGA.txt", ios::in | ios::out);
+
+    if(archivo.is_open()){
+        archivo.seekp(0);
+
+        string linea;
+
+       
+
+        
+
+        archivo.close();
+
+
+    } else{
+        cerr<<"Error: No se pudo abrir el archivo"<<endl;
+    }
     
 }
 
@@ -253,4 +272,4 @@ int main(int argc, char const *argv[])
     
     system("pause");
     return 0;
-}
+};
