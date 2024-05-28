@@ -89,5 +89,6 @@ HashMap::~HashMap()
     for(int i = 0; i < hashGroups; i ++){
         delete listaProductos[i];
     }
-        delete[] listaProductos;
+    
+    delete[] listaProductos;
 }
