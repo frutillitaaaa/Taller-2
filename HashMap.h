@@ -8,7 +8,7 @@ using namespace std;
 class HashMap {
 
     private:
-        static const int hashGroups = 100;
+        static const int hashGroups = 200;
         Lista* listaProductos[hashGroups];
         
     public:

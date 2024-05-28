@@ -247,15 +247,10 @@ int main(int argc, char const *argv[])
     Lista lista;
     leerArchivoBodega(hashMap);
     //menuPrincipal(cola, hashMap);
-    Producto* p = new Producto("Medicamentos", "Analgésicos", "101", "Paracetamol 500mg", 3.50);
-    //p = new Producto("Medicamentos", "Analgésicos", "102", "Ibuprofeno 400mg", 4.00);
+    Producto* p = new Producto("Cuidado Personal","Cosmeticos","204","Crema Hidratante",6.00 );
     
-    //hashMap.insertarItem(p);
-    
-    //cout<<hashMap.hashFunction(p->obtenerNombreProducto());
-    hashMap.insertarItem(p);
     hashMap.desplegarMap();
-    delete p;
+    
     system("pause");
     return 0;
 }

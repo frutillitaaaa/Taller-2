@@ -16,15 +16,15 @@ bool HashMap::isEmpty() const
 int HashMap::hashFunction(string clave)
 {
     int claveNum = 0;
-    int posicionLetra = 0;
+    int posicionLetra = 1;
 
     for(char letra : clave){
         letra = toupper(letra);
         int valorASCIILEtra = static_cast<int>(letra);
-        claveNum += (valorASCIILEtra * posicionLetra);
+        int valorLetra = (valorASCIILEtra * posicionLetra - clave.size())/10;
+        claveNum += valorLetra;
         posicionLetra++;
-    }
-    
+    }  
     return claveNum%hashGroups;
 }
 
@@ -34,7 +34,7 @@ void HashMap::insertarItem(Producto* producto)
     
     for(int i = 1; i < hashGroups + 1; i++){
        if(i == index){
-           listaProductos[index]->agregarAlPrincipio(producto); 
+            listaProductos[index]->agregarAlPrincipio(producto); 
         }
     }
 }
@@ -72,11 +72,14 @@ bool HashMap::buscarItem(Producto* producto)
 void HashMap::desplegarMap()
 {
     for(int i = 0; i < hashGroups; i++){
-        for(int j = 0; j < listaProductos[i]->size(); j++){
-            Node* nodoActual = listaProductos[i]->obtenerPrimerNodo();
+        Node* nodoActual = listaProductos[i]->obtenerPrimerNodo();
+        while(nodoActual != nullptr){
             cout<<"Producto: "<< nodoActual->producto->obtenerNombreProducto()<<endl;
             nodoActual = nodoActual->next;
-        } 
+        }
+            
+            
+        
     }
     
 }
