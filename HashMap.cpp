@@ -97,4 +97,10 @@ HashMap::~HashMap()
     delete[] listaProductos;
 }
 
-
+Node *HashMap::obtenerLista(int index)
+{
+    for(int i = 0; i < hashGroups; i ++){
+        return listaProductos[i]->obtenerPrimerNodo();
+    }
+    return nullptr;
+}

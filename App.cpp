@@ -244,7 +244,11 @@ void editarArchivoBodega(HashMap& hashMap){
 
         string linea;
 
-       
+       while(!hashMap.isEmpty()){
+        for(int i = 0; i < 100; i++){
+            hashMap.obtenerLista(i);
+        }
+       }
 
         
 
