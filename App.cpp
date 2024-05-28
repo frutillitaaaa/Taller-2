@@ -246,7 +246,11 @@ void editarArchivoBodega(HashMap& hashMap){
 
        while(!hashMap.isEmpty()){
         for(int i = 0; i < 100; i++){
-            hashMap.obtenerLista(i);
+            Node* nodoActual = hashMap.obtenerLista(i);
+
+            while(nodoActual != nullptr){
+                linea = nodoActual->producto->toString();
+            }
         }
        }
 
