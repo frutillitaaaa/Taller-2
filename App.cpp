@@ -36,7 +36,7 @@ void editarArchivoBodega(HashMap& hashMap){
         
         archivo.flush();
         archivo.close();
-        
+
     } else{
         cerr<<"Error: No se pudo abrir el archivo"<<endl;
     }
@@ -114,19 +114,10 @@ void ingresarClienteACola(ColasClientes& cola){
     
 }
 
-void desplegarProductosEnBodega(){
-    fstream archivo("BODEGA.txt");
-    string linea;
-
-    if(archivo.is_open()){
-        while(getline(archivo,linea)){
-            cout<<linea<<endl;
-        }
-        archivo.close();
-    } else {
-        cerr<<"Error: No se pudo abrir el archivo"<<endl;
-    }
+void desplegarProductosEnBodega(HashMap& hashMap){
+    hashMap.desplegarMap();
 }
+
 void agregarProductosABodega(HashMap& hashMap){
     string texto;
     int valor;
@@ -182,7 +173,6 @@ void agregarProductosABodega(HashMap& hashMap){
 
     if(confirmar==1){
         hashMap.insertarItem(producto);
-        //hashMap.desplegarMap();
         editarArchivoBodega(hashMap);
     } 
 
@@ -199,7 +189,7 @@ void menuProductos(HashMap& hashMap){
 
         switch(opcion){
             case 1:
-                desplegarProductosEnBodega();
+                desplegarProductosEnBodega(hashMap);
                 break;
             case 2:
                 agregarProductosABodega(hashMap);
@@ -216,10 +206,35 @@ void menuProductos(HashMap& hashMap){
 
 }
 
-void generarBoletaDeVenta(){
+void generarBoletaDeVenta(HashMap& hashMap){
+    int opcion;
+    Producto* productoActual = new Producto();
+    do{
+        cout<<"Seleccione una opcion:\n1) Agregar un producto\n2) Completar compra\n0) salir"<<endl;
+        cin>>opcion;
+
+        if(opcion == 1){
+            string nombreProducto;
+            cout<<"Ingrese el nombre del producto que desea: "<<endl;
+            cin>>nombreProducto;
+            productoActual->setNombreProducto(nombreProducto);
+            bool encontrado = hashMap.buscarItem(productoActual);
+            
+            if(!encontrado){
+            cout<<"El producto no fue encontrado en bodega"<<endl;
+            } else{
+                cout<<"Producto encontrado"<<endl;
+            }
+        }
+
+    
+
+    }while(opcion != 0);
+    
+    
+    
 
 }
-
 
 void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
     int opcion;
@@ -249,7 +264,7 @@ void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
                 break;
             case 5:
                 cout<<"Generar boletas de venta";
-                generarBoletaDeVenta();
+                generarBoletaDeVenta(hashMap);
                 break;
             case 0:
                 cout<<"Saliendo del menu";
@@ -303,9 +318,8 @@ int main(int argc, char const *argv[])
     Lista lista;
     leerArchivoBodega(hashMap);
     //menuPrincipal(cola, hashMap);
-    agregarProductosABodega(hashMap);
+    //agregarProductosABodega(hashMap);
     //hashMap.desplegarMap();
-    
     system("pause");
     return 0;
 };
