@@ -209,6 +209,8 @@ void menuProductos(HashMap& hashMap){
 void generarBoletaDeVenta(HashMap& hashMap){
     int opcion;
     Producto* productoActual = new Producto();
+    bool encontrado = false;
+    Lista* listaProductosActuales = new Lista();
     do{
         cout<<"Seleccione una opcion:\n1) Agregar un producto\n2) Completar compra\n0) salir"<<endl;
         cin>>opcion;
@@ -218,16 +220,28 @@ void generarBoletaDeVenta(HashMap& hashMap){
             cout<<"Ingrese el nombre del producto que desea: "<<endl;
             cin>>nombreProducto;
             productoActual->setNombreProducto(nombreProducto);
-            bool encontrado = hashMap.buscarItem(productoActual);
+            encontrado = hashMap.buscarItem(productoActual);
             
             if(!encontrado){
             cout<<"El producto no fue encontrado en bodega"<<endl;
             } else{
                 cout<<"Producto encontrado"<<endl;
+                cout<<"Se agregara el producto al carrito"<<endl;
+                listaProductosActuales->agregarAlPrincipio(productoActual);
+            }
+        }else if(opcion == 2){
+            if(!listaProductosActuales->isEmpty()){
+                
+                while(productoActual != nullptr){
+                    hashMap.eliminarItem(productoActual);
+                    productoActual = listaProductosActuales->obtenerNodo(productoActual)->next->producto;
+                }
+                cout<<"pago exitoso"<<endl;
+                editarArchivoBodega(hashMap);
+            }else{
+                cout<<"Su producto no fue encontrado, no hay productos que pagar"<<endl;
             }
         }
-
-    
 
     }while(opcion != 0);
     
