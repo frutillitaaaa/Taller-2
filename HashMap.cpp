@@ -7,6 +7,7 @@ HashMap::HashMap()
     }
 }
 
+//funcion booleana que indica si la tabla hash esta vacia
 bool HashMap::isEmpty() const
 {
     for(int i = 0; i < hashGroups; i++){
@@ -17,6 +18,7 @@ bool HashMap::isEmpty() const
     return true;
 }
 
+//funcion hash que conviente un string clave (se entrega el string del nombre del producto) en un valor numero para asociar un producto a un indice del hashmap
 int HashMap::hashFunction(string clave)
 {
     int claveNum = 0;
@@ -32,6 +34,7 @@ int HashMap::hashFunction(string clave)
     return claveNum%hashGroups;
 }
 
+//funcion que inserta un producto en la tabla hash
 void HashMap::insertarItem(Producto* producto)
 {
     int index = hashFunction(producto->obtenerNombreProducto());
@@ -61,6 +64,8 @@ void HashMap::eliminarItem(Producto* producto)
 
 }
 
+//funcion que comprueba la existencia de un producto en el hashmap
+//recorre cada uno de los index de la tabla hash y llama al metodo de buscar elemento para cada nodo de la lista asociado al indice de la tabla hash
 bool HashMap::buscarItem(Producto* producto)
 {
     int index = hashFunction(producto->obtenerNombreProducto());
@@ -95,6 +100,7 @@ HashMap::~HashMap()
     delete[] listaProductos;
 }
 
+//funcion que retorna el nodo cabeza de la lista de productos
 Node *HashMap::obtenerLista(int index)
 {
     return listaProductos[index]->obtenerPrimerNodo();

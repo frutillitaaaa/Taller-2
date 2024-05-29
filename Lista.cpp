@@ -54,6 +54,7 @@ Node *Lista::obtenerPrimerNodo()
     return nullptr;
 }
 
+//funcion que comprueba la existencia del producto en la lista
 bool Lista::buscarElemento(Producto* producto)
 {
     Node* nodoActual = first;
