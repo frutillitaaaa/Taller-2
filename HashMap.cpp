@@ -9,15 +9,12 @@ HashMap::HashMap()
 
 bool HashMap::isEmpty() const
 {
-    int contListasVacias;
     for(int i = 0; i < hashGroups; i++){
-        if(listaProductos[i]->isEmpty()){
-            contListasVacias++;
+        if(!listaProductos[i]->isEmpty()){
+           return false;
         }   
     }
-
-    if(contListasVacias == hashGroups) return true;
-    return false;
+    return true;
 }
 
 int HashMap::hashFunction(string clave)
@@ -78,10 +75,11 @@ bool HashMap::buscarItem(Producto* producto)
 
 void HashMap::desplegarMap()
 {
+     
     for(int i = 0; i < hashGroups; i++){
-        Node* nodoActual = listaProductos[i]->obtenerPrimerNodo();
+        Node* nodoActual =listaProductos[i]->obtenerPrimerNodo();
         while(nodoActual != nullptr){
-            cout<<"Producto: "<< nodoActual->producto->obtenerNombreProducto()<<endl;
+            cout<<nodoActual->producto->toString()<<endl;
             nodoActual = nodoActual->next;
         }    
     }
@@ -99,8 +97,10 @@ HashMap::~HashMap()
 
 Node *HashMap::obtenerLista(int index)
 {
-    for(int i = 0; i < hashGroups; i ++){
-        return listaProductos[i]->obtenerPrimerNodo();
-    }
-    return nullptr;
+    return listaProductos[index]->obtenerPrimerNodo();
+}
+
+int HashMap::obtenerCantHashGroups()
+{
+    return hashGroups;
 }

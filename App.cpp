@@ -12,8 +12,36 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <limits>
 
 using namespace std;
+
+void editarArchivoBodega(HashMap& hashMap){
+    fstream archivo("BODEGA.txt", ios::in | ios::out);
+
+    if(archivo.is_open()){
+        archivo.seekp(0);
+
+        string linea;
+        
+        for(int i = 0; i < hashMap.obtenerCantHashGroups(); i++){
+            Node* nodoActual = hashMap.obtenerLista(i);
+            
+            while(nodoActual != nullptr){
+                linea = nodoActual->producto->toString();
+                archivo<<linea<<'\n';
+                nodoActual = nodoActual->next;
+            }
+        }
+        
+        archivo.flush();
+        archivo.close();
+        
+    } else{
+        cerr<<"Error: No se pudo abrir el archivo"<<endl;
+    }
+    
+}
 
 void desplegarMenu(){
     cout<<"\nBienvenido\n";
@@ -102,29 +130,61 @@ void desplegarProductosEnBodega(){
 void agregarProductosABodega(HashMap& hashMap){
     string texto;
     int valor;
-    Producto* producto;
+    int confirmar;
+    bool datoInvalido = false;
+    Producto* producto = new Producto();
+    do {
     
-    cout<<"Ingrese el ID del producto: "<<endl;
-    cin>>texto;
-    producto->setIdProducto(texto);
+        cout<<"Ingrese el ID del producto: "<<endl;
+        cin>>texto;
+    
+        producto->setIdProducto(texto);
 
+        cout<<"Ingrese el nombre del producto que desea agregar: "<<endl;
+        cin>>texto;
+    
+        producto->setNombreProducto(texto);
+
+        cout<<"Ingrese la categoria del producto: "<<endl;
+        cin>>texto;
+    
+        producto->setCategoria(texto);
 
     
-    cout<<"Ingrese el nombre del producto que desea agregar: "<<endl;
-    cin>>texto;
-    producto->setNombreProducto(texto);
+        cout<<"Ingrese la subcategoria del producto: "<<endl;
+        cin>>texto;
+        producto->setSubCategoria(texto);
 
-    cout<<"Ingrese la categoria del producto: "<<endl;
-    cin>>texto;
-    producto->setCategoria(texto);
+        do{
+            datoInvalido = false;
+            cout<<"Ingrese el precio del producto: "<<endl;
+            cin>>texto;
+            
 
-    cout<<"Ingrese la subcategoria del producto: "<<endl;
-    cin>>texto;
-    producto->setSubCategoria(texto);
+            try{
+                valor = stoi(texto);
+            } catch(const invalid_argument& e){
+                cerr<<"No ingreso un numero"<<endl;
+                datoInvalido = true;
+            }
 
-    cout<<"Ingrese el precio del producto: "<<endl;
-    cin>>valor;
-    producto->setPrecio(valor);
+        }while(datoInvalido==true);
+    
+        producto->setPrecio(valor);
+
+
+        cout<<"Confirmar creacion del producto?\n1) Si\n2)NO"<<endl;
+        cout<<"ID Producto: "<<producto->obtenerIdProducto()<<"\nNombre Producto: "<<producto->obtenerNombreProducto()<<
+        "\nCategoria: "<<producto->obtenerCategoria()<<"\nSubCategoria: "<<producto->obtenerSubCategoria()<<"\nPrecio: "<<producto->obtenerPrecioProducto()<<endl;
+        cin>>confirmar;
+    
+    } while(confirmar != 1);
+
+    if(confirmar==1){
+        hashMap.insertarItem(producto);
+        //hashMap.desplegarMap();
+        editarArchivoBodega(hashMap);
+    } 
 
     delete producto;
 
@@ -236,37 +296,6 @@ void leerArchivoBodega(HashMap& hashMap){
     } 
 }
 
-void editarArchivoBodega(HashMap& hashMap){
-    fstream archivo("BODEGA.txt", ios::in | ios::out);
-
-    if(archivo.is_open()){
-        archivo.seekp(0);
-
-        string linea;
-
-       while(!hashMap.isEmpty()){
-        for(int i = 0; i < 100; i++){
-            Node* nodoActual = hashMap.obtenerLista(i);
-
-            while(nodoActual != nullptr){
-                linea = nodoActual->producto->toString();
-            }
-        }
-       }
-
-        
-
-        archivo.close();
-
-
-    } else{
-        cerr<<"Error: No se pudo abrir el archivo"<<endl;
-    }
-    
-}
-
-
-
 int main(int argc, char const *argv[])
 {
     HashMap hashMap;
@@ -274,9 +303,8 @@ int main(int argc, char const *argv[])
     Lista lista;
     leerArchivoBodega(hashMap);
     //menuPrincipal(cola, hashMap);
-    Producto* p = new Producto("Cuidado Personal","Cosmeticos","204","Crema Hidratante",6.00 );
-    
-    hashMap.desplegarMap();
+    agregarProductosABodega(hashMap);
+    //hashMap.desplegarMap();
     
     system("pause");
     return 0;

@@ -22,4 +22,5 @@ class HashMap {
         void desplegarMap();
         ~HashMap();
         Node* obtenerLista(int index);
+        int obtenerCantHashGroups();
 };
