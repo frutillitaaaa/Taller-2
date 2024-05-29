@@ -69,6 +69,8 @@ void llamarAlSiguienteCliente(ColasClientes& cola){
     }
 }
 
+//se ingresa por pantalla el tipo de cliente al que corresponde (preferencial o normal) para ingresarlo a su respectiva cola
+//el objeto cola guarda referencias a una cola de clientes preferenciales y a una cola de clientes normales
 void ingresarClienteACola(ColasClientes& cola){
     
     int opcion;
@@ -124,6 +126,8 @@ void desplegarProductosEnBodega(HashMap& hashMap){
     hashMap.desplegarMap();
 }
 
+//funcion void utilizada para agregar productos a una tabla hash
+//se ingresan por pantalla los datos del producto que se desea agregar a la bodega, al finalizar se actualizan los datos del txt
 void agregarProductosABodega(HashMap& hashMap){
     string texto;
     int valor;
@@ -212,6 +216,8 @@ void menuProductos(HashMap& hashMap){
 
 }
 
+//funcion void que genera la venta de los productos al cliente
+//se ingresa el nombre del producto que el cliente desea obtener, se comprueba que tenga stock en la bodega y se realiza la venta
 void generarBoletaDeVenta(HashMap& hashMap){
     int opcion;
     Producto* productoActual = new Producto();
@@ -258,6 +264,8 @@ void generarBoletaDeVenta(HashMap& hashMap){
 
 }
 
+//funcion del menu principal de la farmacia
+//aqui se hacen los llamados a los demas metodos
 void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
     int opcion;
 
@@ -301,6 +309,7 @@ void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
 
 }
 
+//funcion que lee el archivo txt de la bodega y almacena los datos en el hashmap
 void leerArchivoBodega(HashMap& hashMap){
     fstream archivo("BODEGA.txt");
     string linea;
@@ -339,9 +348,7 @@ int main(int argc, char const *argv[])
     ColasClientes cola;
     Lista lista;
     leerArchivoBodega(hashMap);
-    //menuPrincipal(cola, hashMap);
-    //agregarProductosABodega(hashMap);
-    //hashMap.desplegarMap();
+    menuPrincipal(cola, hashMap);
     system("pause");
     return 0;
 };
