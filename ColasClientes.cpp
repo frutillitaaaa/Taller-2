@@ -21,7 +21,6 @@ queue<ClientePreferencial> ColasClientes::obtenerColaClientesPreferenciales()
 void ColasClientes::agregarClienteAColaNormal(ClienteNormal* cliente)
 {
     colaClientesNormales.push(*cliente);
-    cout<<colaClientesNormales.size()<<endl;
     
 }
 
@@ -77,11 +76,5 @@ void ColasClientes::agregarClienteAColaPreferencial(ClientePreferencial *cliente
     } else{
         colaClientesPreferenciales.push(*cliente);
     }
-        
-
-    cout<<colaClientesPreferenciales.size();
-    cout<<colaClientesPreferenciales.front().getAtributo();
-    cout<<colaClientesPreferenciales.front().getPrioridad();
-
     delete c;
 }

@@ -12,4 +12,4 @@ ClienteNormal::ClienteNormal(){
 ClienteNormal::~ClienteNormal(){
 
 }
- 
+

@@ -59,8 +59,14 @@ void entregarNumeroDeAtencion(){
 
 }
 
-void llamarAlSiguienteCliente(){
-
+void llamarAlSiguienteCliente(ColasClientes& cola){
+    if(!cola.obtenerColaClientesPreferenciales().empty()){
+        cout<<"Atencion cliente preferencial: "<<endl;
+        cola.obtenerColaClientesPreferenciales().pop();
+    }else{
+        cout<<"Atencion cliente normal: "<<endl;
+        cola.obtenerColaClientesNormales().pop();
+    }
 }
 
 void ingresarClienteACola(ColasClientes& cola){
@@ -231,12 +237,14 @@ void generarBoletaDeVenta(HashMap& hashMap){
             }
         }else if(opcion == 2){
             if(!listaProductosActuales->isEmpty()){
-                
+                int montoPagar = 0;
                 while(productoActual != nullptr){
-                    hashMap.eliminarItem(productoActual);
+                    montoPagar += productoActual->obtenerPrecioProducto();
                     productoActual = listaProductosActuales->obtenerNodo(productoActual)->next->producto;
+                    hashMap.eliminarItem(productoActual);
                 }
                 cout<<"pago exitoso"<<endl;
+                cout<<"monto pagado: "<<montoPagar<<endl;
                 editarArchivoBodega(hashMap);
             }else{
                 cout<<"Su producto no fue encontrado, no hay productos que pagar"<<endl;
@@ -266,7 +274,7 @@ void menuPrincipal(ColasClientes& cola, HashMap& hashMap){
                 break;
             case 2:
                 cout<<"Llamar al siguiente cliente";
-                llamarAlSiguienteCliente();
+                llamarAlSiguienteCliente(cola);
                 break;
             case 3:
                 cout<<"Ingresar cliente a la cola de manera correcta";

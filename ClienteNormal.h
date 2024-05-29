@@ -12,4 +12,5 @@ class ClienteNormal:public Cliente {
         ClienteNormal();
         ~ClienteNormal();
 
+
 };
